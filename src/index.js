@@ -1,13 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { ChakraProvider } from "@chakra-ui/react";
+import axios from "axios";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { store } from "./Redux/store";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+axios.defaults.baseURL =
+  "https://run.mocky.io/v3/5ff1e1a8-b652-40c4-8c1f-5fb701ece088";
+axios.defaults.headers.post["Content-Type"] = "application/json";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <ChakraProvider>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ChakraProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
